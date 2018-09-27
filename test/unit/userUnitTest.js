@@ -12,20 +12,24 @@ describe('User Unit Test', () => {
 
     require('../../src/config/db');
     
+    var req,res;
+
+    const defaultUser = {
+        email : "email@email.com",
+        password : "1234",
+        name : "Marcus tester"
+    };
+
     beforeEach(done => {
         userModel.deleteMany({}, (e2,s2) => {
             done();
         })
     });
 
-    describe('POST /v1/user', () => {
+    describe('userRepository.storeUser', () => {
         it('should return an user object', done => {
 
-            const user = {
-                email : "email@email.com",
-                password : "1234",
-                name : faker.name.findName().toUpperCase()
-            };
+            const user = defaultUser
 
             userRepository.storeUser(user).then((dt) => {
 
@@ -36,6 +40,20 @@ describe('User Unit Test', () => {
                 done();
 
             })
+        });
+    });
+
+    describe('userRepository.getUserByEmail', () => {
+        it('should return an user object', done => {
+
+            new userModel(defaultUser).save((err, user) => {
+                userRepository.getUserByEmail(user).then((dt) => {
+                    expect(dt).to.be.a('object');
+                    expect(dt.email).to.be.equal(user.email);
+                    done();
+                })
+            })
+            
         });
     });
 
