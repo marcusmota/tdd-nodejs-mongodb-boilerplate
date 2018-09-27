@@ -12,13 +12,13 @@ if(process.env.NODE_ENV == "production"){
   debug = true;
   connectString = parametros.development.database; 
 }else if(process.env.NODE_ENV == "test"){
+  debug = false;
   connectString = parametros.test.database; 
-  debug = true;
 }
  
 mongoose.Promise = global.Promise;
 
-mongoose.connect(connectString);
+mongoose.connect(connectString, { useNewUrlParser: true });
 
 mongoose.set('debug', debug);
 

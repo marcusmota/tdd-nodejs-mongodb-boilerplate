@@ -1,12 +1,14 @@
 
-var faker = require('faker');
+const faker = require('faker');
 faker.locale = "pt_BR";
 const jwt = require('jsonwebtoken');
 
 const userModel = require("../../src/models/user");
-const userController = require("../../src/controllers/userController");
+const userRepository = require("../../src/repository/userRepository");
+const should = require('chai').should();
+const expect = require('chai').expect;
 
-describe('User Integration Test', () => {
+describe('User Unit Test', () => {
 
     require('../../src/config/db');
     
@@ -17,12 +19,28 @@ describe('User Integration Test', () => {
     });
 
     describe('POST /v1/user', () => {
-        it('should return 422', done => {
-            req = res = {};
-            userController.getAll(req,res).then((v) => {
-                console.log(v)
+        it('should return an user object', done => {
+
+            const user = {
+                email : "email@email.com",
+                password : "1234",
+                name : faker.name.findName().toUpperCase()
+            };
+
+            userRepository.storeUser(user).then((dt) => {
+
+                expect(dt).to.be.a('object');
+                expect(dt.name).to.be.equal(user.name);
+                expect(dt.email).to.be.equal(user.email);
+                expect(dt.password).to.be.equal(user.password);
+                done();
+
             })
         });
     });
+
+    after(() => {
+        
+    })
 
 });

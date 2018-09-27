@@ -20,8 +20,8 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
-    "test-unit": "clear && NODE_ENV=test mocha test/unit/*.js",
-    "test": "clear && NODE_ENV=test mocha --opts test/integration/mocha.opts --watch test/integration/**.js"
+    "test-unit": "clear && NODE_ENV=test mocha test/unit/**.js --exit",
+    "test": "clear && NODE_ENV=test mocha --opts test/integration/mocha.opts test/integration/**.js --exit"
   },
   "keywords": [],
   "author": "",
