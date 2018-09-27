@@ -1,0 +1,18 @@
+{
+    "development": {
+        "database": "mongodb://localhost/TDD_production",
+        "port" : 6021,
+        "appName" : "API TDD DEV"
+    },
+    "test": {
+        "database": "mongodb://localhost/TDD_test",
+        "port" : 6022,
+        "appName" : "API TDD TEST"
+        
+    },
+    "production": {
+        "database": "mongodb://localhost/TDD_production",
+        "port" : 6020,
+        "appName" : "API TDD PROD"    
+    }
+}
