@@ -29,14 +29,12 @@ describe('User Unit Test', () => {
     describe('userRepository.storeUser', () => {
         it('should return an user object', done => {
 
-            const user = defaultUser
-
             userRepository.storeUser(user).then((dt) => {
 
                 expect(dt).to.be.a('object');
-                expect(dt.name).to.be.equal(user.name);
-                expect(dt.email).to.be.equal(user.email);
-                expect(dt.password).to.be.equal(user.password);
+                expect(dt.name).to.be.equal(defaultUser.name);
+                expect(dt.email).to.be.equal(defaultUser.email);
+                expect(dt.password).to.be.equal(defaultUser.password);
                 done();
 
             })

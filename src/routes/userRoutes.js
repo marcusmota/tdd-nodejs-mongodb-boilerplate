@@ -4,6 +4,6 @@ module.exports = function(app){
 
   app.post('/v1/user/sign-in', userController.signIn);
   app.post('/v1/user', userController.post);
-  app.get('/v1/users', userController.getAll);
+  app.post('/v1/users', userController.getAll);
 
 };

@@ -36,7 +36,7 @@ exports.getAllUser = (obj) => {
     return new Promise((resolve) => {
 
         userModel
-        .findall(obj)
+        .find(obj)
         .then((resp) => {
             resolve(resp);
         }).catch((err) => {
